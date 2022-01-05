@@ -10,10 +10,15 @@ namespace LeGrandRestaurant
     {
         private readonly Menu _menu;
 
-        public Franchise(Restaurant restaurant)
+
+        public Franchise(Restaurant[] restaurants)
         {
             _menu = new Menu();
-            restaurant.ImposerMenu(_menu);
+            for(int i = 0; i < restaurants.Length; i++)
+            {
+                restaurants[i].ImposerMenu(_menu);
+            }
+            
         }
 
         public void FixerPrix(Plat plat, decimal nouveauPrix)
