@@ -15,7 +15,7 @@ namespace LeGrandRestaurant.test
         public void CarteFranchise()
         {
             // ÉTANT DONNE un restaurant ayant le statut de filiale d'une franchise
-            var restaurant = new Restaurant();
+            var restaurant = new Restaurant(null, null);
             var franchise = new Franchise(restaurant);
 
             // QUAND la franchise modifie le prix du plat
@@ -36,7 +36,7 @@ namespace LeGrandRestaurant.test
         public void ConflitRestaurantFranchise()
         {
             //ÉTANT DONNE un restaurant appartenant à une franchise et définissant un menu ayant un plat
-            var restaurant = new Restaurant();
+            var restaurant = new Restaurant(null, null);
             var franchise = new Franchise(restaurant);
             var plat = new Plat();
 

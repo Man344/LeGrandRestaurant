@@ -10,12 +10,25 @@ namespace LeGrandRestaurant
     {
         private Menu _menu;
         private readonly Table[] _tables;
+        private readonly Serveur[] _serveurs;
 
-        public Restaurant(params Table[] tables)
+        public Restaurant(Table[] tables, Serveur[] serveurs)
         {
             _tables = tables;
             _menu = new Menu();
+            _serveurs = serveurs;
         }
+ 
+        //public Restaurant(Table[] tables)
+        //{
+        //    _tables = tables;
+        //    _menu = new Menu();
+        //}
+
+        //public Restaurant()
+        //{
+
+        //}
 
         public void DébuterService()
         {

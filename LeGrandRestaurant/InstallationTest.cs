@@ -13,7 +13,9 @@ namespace LeGrandRestaurant.test
         {
             // ÉTANT DONNE une table dans un restaurant ayant débuté son service
             var table = new Table();
-            var restaurant = new Restaurant(table);
+            Table[] tables = new Table[] { table };
+            
+            var restaurant = new Restaurant(tables, null);
             restaurant.DébuterService();
 
             // QUAND un client est affecté à une table
@@ -29,8 +31,10 @@ namespace LeGrandRestaurant.test
         public void DesaffectationClient()
         {
             // ÉTANT DONNE une table occupée par un client
+
             var table = new Table();
-            var restaurant = new Restaurant(table);
+            Table[] tables = new Table[] { table };
+            var restaurant = new Restaurant(tables, null );
 
             restaurant.DébuterService();
             table.InstallerClient();
@@ -65,9 +69,10 @@ namespace LeGrandRestaurant.test
         {
             // ÉTANT DONNE un restaurant ayant une table occupée par un client
             var table = new Table();
+            Table[] tables = new Table[] { table };
             table.InstallerClient();
 
-            var restaurant = new Restaurant(table);
+            var restaurant = new Restaurant(tables, null);
 
             // QUAND le service est terminé
             restaurant.TerminerService();
@@ -87,7 +92,9 @@ namespace LeGrandRestaurant.test
 
             var tableLibre = new Table();
 
-            var restaurant = new Restaurant(tableLibre, tableOccupée);
+            Table[] tables = new Table[] { tableLibre, tableOccupée };
+
+            var restaurant = new Restaurant(tables, null );
 
             // QUAND on recherche une table
             var tableChoisie = restaurant
@@ -109,7 +116,7 @@ namespace LeGrandRestaurant.test
             foreach (var tableOccupée in tableOccupées)
                 tableOccupée.InstallerClient();
 
-            var restaurant = new Restaurant(tableOccupées);
+            var restaurant = new Restaurant(tableOccupées, null);
 
             // QUAND on recherche une table libre
             var tablesLibres = restaurant.RechercherTablesLibres();
