@@ -10,5 +10,10 @@ namespace LeGrandRestaurant
         {
             this.CA += montantCommande;
         }
+
+        public void InitCA()
+        {
+            this.CA = 0;
+        }
     }
 }
