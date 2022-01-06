@@ -12,7 +12,7 @@ namespace LeGrandRestaurant
 
         public void InstallerClient()
         {
-            if (!EstLibre) throw new InvalidOperationException();
+            if (!EstLibre) throw new Exception();
             EstLibre = false;
         }
 

@@ -15,19 +15,22 @@ namespace LeGrandRestaurant.test
         public void CarteFranchise()
         {
             // ÉTANT DONNE un restaurant ayant le statut de filiale d'une franchise
-            var restaurant = new Restaurant(null, null);
-            var franchise = new Franchise(restaurant);
+            var plat = new Plat("ratatouille", 8.5);
+            Menu menu = new Menu();
+            menu.plats.Add(plat);
+
+            Franchise franchise = new Franchise(menu);
+            Restaurant filiale = franchise.addFillialeRestaurant();
 
             // QUAND la franchise modifie le prix du plat
-            var nouveauPrix = new decimal(67.99);
-            var plat = new Plat();
+            double prix = 9;
+            Menu menuWithNewPLat = new Menu();
+            menuWithNewPLat.plats.Add(new Plat("ratatouille", prix));
+            franchise.setMenu(menuWithNewPLat);
 
-            franchise.FixerPrix(plat, nouveauPrix);
 
             // ALORS le prix du plat dans le menu du restaurant est celui défini par la franchise
-            var prixDuPlat = restaurant.ObtenirPrix(plat);
-
-            Assert.Equal(nouveauPrix, prixDuPlat);
+            Assert.Equal(prix, filiale.menu.plats.First().prix);
         }
 
         [Fact(DisplayName = "ÉTANT DONNE un restaurant appartenant à une franchise et définissant un menu ayant un plat " +
@@ -36,21 +39,22 @@ namespace LeGrandRestaurant.test
         public void ConflitRestaurantFranchise()
         {
             //ÉTANT DONNE un restaurant appartenant à une franchise et définissant un menu ayant un plat
-            var restaurant = new Restaurant(null, null);
-            var franchise = new Franchise(restaurant);
-            var plat = new Plat();
+            var plat = new Plat("ratatouille", 8.5);
+            Menu menu = new Menu();
+            menu.plats.Add(plat);
 
-            var prixRestaurant = new decimal(12.99);
-            restaurant.FixerPrix(plat, prixRestaurant);
+            Franchise franchise = new Franchise(menu);
+            Restaurant filiale = franchise.addRestaurant();
+
 
             //QUAND la franchise modifie le prix du plat
-            var prixFranchise = new decimal(67.99);
-            franchise.FixerPrix(plat, prixFranchise);
+            double prix = 9;
+            Menu menuWithNewPLat = new Menu();
+            menuWithNewPLat.plats.Add(new Plat("ratatouille", prix));
+            franchise.setMenu(menuWithNewPLat);
 
             //ALORS le prix du plat dans le menu du restaurant reste inchangé
-            var prixDuPlat = restaurant.ObtenirPrix(plat);
-
-            Assert.Equal(prixRestaurant, prixDuPlat);
+            Assert.NotEqual(prix, filiale.menu.plats.First().prix);
         }
     }
 }

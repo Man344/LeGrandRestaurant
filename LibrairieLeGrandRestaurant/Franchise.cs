@@ -8,15 +8,33 @@ namespace LeGrandRestaurant
 {
     public class Franchise
     {
-        private readonly Menu _menu;
+        public List<Restaurant> Filliales { get; private set; } = new List<Restaurant>();
 
-        public Franchise(Restaurant restaurant)
+        public Menu menu { get; private set; }
+        public void setMenu(Menu menu)
         {
-            _menu = new Menu();
-            restaurant.ImposerMenu(_menu);
+            this.menu = menu;
+            Filliales.ForEach(x => x.menu = menu);
         }
 
-        public void FixerPrix(Plat plat, decimal nouveauPrix)
-            => _menu.FixerPrix(plat, nouveauPrix);
+        public Franchise(Menu menu)
+        {
+            this.menu = menu;
+        }
+
+        public Restaurant addFillialeRestaurant()
+        {
+            Restaurant filliale = new Restaurant(true);
+            filliale.menu = menu;
+            Filliales.Add(filliale);
+            return filliale;
+        }
+
+        public Restaurant addRestaurant()
+        {
+            Restaurant filliale = new Restaurant(false);
+            filliale.menu = menu;
+            return filliale;
+        }
     }
 }

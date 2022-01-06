@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
@@ -12,17 +13,17 @@ namespace LeGrandRestaurant.test
         public void AffectationClient()
         {
             // ÉTANT DONNE une table dans un restaurant ayant débuté son service
-            var table = new Table();
-            Table[] tables = new Table[] { table };
-            
-            var restaurant = new Restaurant(tables, null);
-            restaurant.DébuterService();
+            Restaurant resto = new Restaurant(false);
+            resto.DébuterService();
+            Table table = new Table();
+            resto.tables.Add(table);
 
             // QUAND un client est affecté à une table
-            table.InstallerClient();
+            resto.sitCostumer(table);
 
             // ALORS cette table n'est plus sur la liste des tables libres du restaurant
-            Assert.False(table.EstLibre);
+            List<Table> tablesLibres = resto.GetTablesLibres();
+            Assert.DoesNotContain(table, tablesLibres);
         }
 
         [Fact(DisplayName = "ÉTANT DONNE une table occupée par un client " +
@@ -31,19 +32,18 @@ namespace LeGrandRestaurant.test
         public void DesaffectationClient()
         {
             // ÉTANT DONNE une table occupée par un client
-
-            var table = new Table();
-            Table[] tables = new Table[] { table };
-            var restaurant = new Restaurant(tables, null );
-
-            restaurant.DébuterService();
-            table.InstallerClient();
+            Restaurant resto = new Restaurant(false);
+            resto.DébuterService();
+            Table table = new Table();
+            resto.tables.Add(table);
+            resto.sitCostumer(table);
 
             // QUAND la table est libérée
-            table.Libérer();
+            resto.unsitCostumer(table);
 
-            // ALORS cette table n'est plus sur la liste des tables libres du restaurant
-            Assert.True(table.EstLibre);
+            // ALORS cette table est sur la liste des tables libres du restaurant
+            List<Table> tablesLibres = resto.GetTablesLibres();
+            Assert.Contains(table, tablesLibres);
         }
 
         [Fact(DisplayName = "ÉTANT DONNE une table occupée par un client " +
@@ -52,14 +52,17 @@ namespace LeGrandRestaurant.test
         public void AlreadyPresentClient()
         {
             // ÉTANT DONNE une table occupée par un client
-            var table = new Table();
-            table.InstallerClient();
+            Restaurant resto = new Restaurant(false);
+            resto.DébuterService();
+            Table table = new Table();
+            resto.tables.Add(table);
+            resto.sitCostumer(table);
 
             // QUAND on veut installer un client
-            void Act() => table.InstallerClient();
+            void Act() => resto.sitCostumer(table);
 
             // ALORS une exception est lancée
-            Assert.Throws<InvalidOperationException>(Act);
+            Assert.Throws<Exception>(Act);
         }
 
         [Fact(DisplayName = "ÉTANT DONNE un restaurant ayant une table occupée par un client " +
@@ -68,14 +71,14 @@ namespace LeGrandRestaurant.test
         public void ServiceEnd()
         {
             // ÉTANT DONNE un restaurant ayant une table occupée par un client
-            var table = new Table();
-            Table[] tables = new Table[] { table };
-            table.InstallerClient();
-
-            var restaurant = new Restaurant(tables, null);
+            Restaurant resto = new Restaurant(false);
+            resto.DébuterService();
+            Table table = new Table();
+            resto.tables.Add(table);
+            resto.sitCostumer(table);
 
             // QUAND le service est terminé
-            restaurant.TerminerService();
+            resto.TerminerService();
 
             // ALORS elle est libérée
             Assert.True(table.EstLibre);
@@ -87,22 +90,20 @@ namespace LeGrandRestaurant.test
         public void NextFreeTable()
         {
             // ÉTANT DONNÉ un restaurant ayant deux tables, dont une occupée
-            var tableOccupée = new Table();
-            tableOccupée.InstallerClient();
+            Restaurant resto = new Restaurant(false);
+            resto.DébuterService();
+            Table table = new Table();
+            resto.tables.Add(table);
+            resto.sitCostumer(table);
 
             var tableLibre = new Table();
-
-            Table[] tables = new Table[] { tableLibre, tableOccupée };
-
-            var restaurant = new Restaurant(tables, null );
+            resto.tables.Add(tableLibre);
 
             // QUAND on recherche une table
-            var tableChoisie = restaurant
-                .RechercherTablesLibres()
-                .Single();
+            Table nextFreeTable = resto.GetTablesLibres().First();
 
             // ALORS la table encore libre est renvoyée
-            Assert.Same(tableLibre, tableChoisie);
+            Assert.Same(tableLibre, nextFreeTable);
         }
 
 
@@ -112,14 +113,17 @@ namespace LeGrandRestaurant.test
         public void NoFreeTable()
         {
             // ÉTANT DONNÉ un restaurant ayant deux tables, toutes occupées
-            var tableOccupées = new Table[] { new Table(), new Table() };
-            foreach (var tableOccupée in tableOccupées)
-                tableOccupée.InstallerClient();
-
-            var restaurant = new Restaurant(tableOccupées, null);
+            Restaurant resto = new Restaurant(false);
+            resto.DébuterService();
+            Table table1 = new Table();
+            resto.tables.Add(table1);
+            resto.sitCostumer(table1);
+            Table table2 = new Table();
+            resto.tables.Add(table2);
+            resto.sitCostumer(table2);
 
             // QUAND on recherche une table libre
-            var tablesLibres = restaurant.RechercherTablesLibres();
+            List<Table> tablesLibres = resto.GetTablesLibres();
 
             // ALORS une collection vide est renvoyée
             Assert.Empty(tablesLibres);

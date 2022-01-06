@@ -8,32 +8,27 @@ namespace LeGrandRestaurant
 {
     public class Menu
     {
-        protected readonly IDictionary<Plat, decimal> Prix;
+        public List<Plat> plats;
+        public List<Boisson> boisson;
 
         public Menu()
         {
-            Prix = new Dictionary<Plat, decimal>();
+            plats = new List<Plat>();
+            boisson = new List<Boisson>();
         }
 
-        public void FixerPrix(Plat plat, decimal nouveauPrix)
+        public double getPrix()
         {
-            Prix.Add(plat, nouveauPrix);
+            double total = 0;
+            foreach (var item in plats)
+            {
+                total += item.prix;
+            }
+            foreach (var item in boisson)
+            {
+                total += item.prix;
+            }
+            return total;
         }
-
-        internal virtual decimal ObtenirPrix(Plat plat)
-            => Prix[plat];
-    }
-
-    internal class MenuFranchisé : Menu
-    {
-        private readonly Menu _parent;
-
-        public MenuFranchisé(Menu parent)
-        {
-            _parent = parent;
-        }
-
-        internal override decimal ObtenirPrix(Plat plat)
-            => Prix.ContainsKey(plat) ? base.ObtenirPrix(plat) : _parent.ObtenirPrix(plat);
     }
 }

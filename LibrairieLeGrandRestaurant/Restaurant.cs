@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LeGrandRestaurant;
+using LeGrandRestaurant.personnes.employes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,56 +10,75 @@ namespace LeGrandRestaurant
 {
     public class Restaurant
     {
-        private Menu _menu;
-        private readonly Table[] _tables;
-        private readonly Serveur[] _serveurs;
+        public List<Table> tables;
+        public List<Serveur> serveurs;
+        public List<Commande> commandes;
+        public Menu menu;
 
-        public Restaurant(Table[] tables, Serveur[] serveurs)
+        public bool EnService { get; private set; } = false;
+        public bool IsFiliale { get; private set; }
+
+
+        public Restaurant(bool isFiliale)
         {
-            _tables = tables;
-            _menu = new Menu();
-            _serveurs = serveurs;
+            this.IsFiliale = isFiliale;
+            menu = new Menu();
+            serveurs = new List<Serveur>();
+            tables = new List<Table>();
+            commandes = new List<Commande>();
         }
- 
-        //public Restaurant(Table[] tables)
-        //{
-        //    _tables = tables;
-        //    _menu = new Menu();
-        //}
-
-        //public Restaurant()
-        //{
-
-        //}
 
         public void DébuterService()
         {
+            EnService = true;
         }
-
-        public bool LaTableEstLibre(Table table)
-            => table.EstLibre;
 
         public void TerminerService()
         {
-            foreach (var table in _tables)
+            foreach (var table in tables)
             {
                 table.Libérer();
             }
+            EnService = false;
         }
 
-        internal void ImposerMenu(Menu menu)
+        public List<Table> GetTablesLibres()
         {
-            _menu = new MenuFranchisé(menu);
+            return tables.Where(t => t.EstLibre).ToList();
         }
 
-        public IEnumerable<Table> RechercherTablesLibres()
+        public List<Commande> GetCommandesToSendToThePolice()
         {
-            return _tables.Where(m => m.EstLibre);
+            return commandes.Where(c => c.hasToGoToThePolice() == true).ToList();
         }
 
-        public decimal ObtenirPrix(Plat plat) => _menu.ObtenirPrix(plat);
+        public void sitCostumer(Table table)
+        {
+            if (EnService)
+            {
+                tables.Remove(table);
+                table.InstallerClient();
+                tables.Add(table);
+            }
+            else
+            {
+                throw new Exception("Impossible d'installer un client quand le restaurant n'est pas en service");
+            }
+        }
 
-        public void FixerPrix(Plat plat, decimal prixRestaurant)
-            => _menu.FixerPrix(plat, prixRestaurant);
+        public void unsitCostumer(Table table)
+        {
+            tables.Remove(table);
+            table.Libérer();
+            tables.Add(table);
+        }
+
+        public double getCA()
+        {
+            double ca = 0;
+            commandes.ForEach(x => ca += x.GetCA());
+            return ca;
+        }
+
     }
 }

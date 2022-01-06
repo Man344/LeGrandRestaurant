@@ -8,5 +8,14 @@ namespace LeGrandRestaurant
 {
     public class Plat
     {
+        public List<Ingredient> ingredients;
+        public string nom;
+        public double prix;
+        public Plat(string nom, double prix)
+        {
+            this.nom = nom;
+            this.prix = prix;
+            ingredients = new List<Ingredient>();
+        }
     }
 }
