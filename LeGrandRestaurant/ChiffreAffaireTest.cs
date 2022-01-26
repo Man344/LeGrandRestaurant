@@ -34,7 +34,10 @@ namespace LeGrandRestaurant.test
             //ÉTANT DONNÉ un nouveau serveur
             var jean = new Serveur("Jean", DateTime.Now);
             // QUAND il prend une commande
-            Commande commande = new Commande(jean, new Client("Catherine"), new Table());
+            Commande commande = new CommandeBuilder().WithServeur(jean)
+                .WithClient(new Client("Catherine"))
+                .WithTable(new Table())
+                .Build();
             //ALORS son chiffre d'affaires est le montant de celle-ci
             Assert.Equal(commande.GetCA(), jean.ca);
         }
@@ -48,10 +51,16 @@ namespace LeGrandRestaurant.test
         {
             //ÉTANT DONNÉ un serveur ayant déjà pris une commande
             var serveur = new Serveur("Caro", DateTime.Now);
-            Commande commande = new Commande(serveur, new Client("Catherine"), new Table());
+            Commande commande = new CommandeBuilder().WithServeur(serveur)
+                .WithClient(new Client("Catherine"))
+                .WithTable(new Table())
+                .Build();
             commande.addBoisson(new Boisson("coktail", 10));
             //QUAND il prend une nouvelle commande
-            Commande commande2 = new Commande(serveur, new Client("Catherine"), new Table());
+            Commande commande2 = new CommandeBuilder().WithServeur(serveur)
+                .WithClient(new Client("Catherine"))
+                .WithTable(new Table())
+                .Build();
             commande.addBoisson(new Boisson("coca", 4));
             //ALORS son chiffre d'affaires est la somme des deux commandes
             double somme = commande.GetCA() + commande2.GetCA();
@@ -82,7 +91,10 @@ namespace LeGrandRestaurant.test
             //QUAND tous les serveurs prennent une commande d'un montant Y
             resto.serveurs.ForEach(x =>
             {
-                Commande commande = new Commande(x, new Client("jeanno"), new Table());
+                Commande commande = new CommandeBuilder().WithServeur(x)
+                .WithClient(new Client("jeanno"))
+                .WithTable(new Table())
+                .Build();
                 commande.addBoisson(new Boisson("oneDollarDrink", montantCommande));
                 resto.commandes.Add(commande);
             });

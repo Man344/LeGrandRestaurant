@@ -21,7 +21,10 @@ namespace LeGrandRestaurant.test
             Serveur jean = new Serveur("Jean", DateTime.Now);
             Table table = new Table();
             Client client = new Client("Catherine");
-            Commande commande = new Commande(jean, client, table);
+            Commande commande = new CommandeBuilder().WithServeur(jean)
+                .WithClient(client)
+                .WithTable(table)
+                .Build();
 
             // QUAND il la déclare comme non - payée
             commande.termine(false);
@@ -40,7 +43,10 @@ namespace LeGrandRestaurant.test
             var jean = new Serveur("Jean", DateTime.Now);
             Table table = new Table();
             Client client = new Client("Catherine");
-            Commande commande = new Commande(jean, client, table);
+            Commande commande = new CommandeBuilder().WithServeur(jean)
+                .WithClient(client)
+                .WithTable(table)
+                .Build();
             commande.termine(false);
 
             // QUAND elle date d'il y a au moins 15 jours
@@ -59,7 +65,10 @@ namespace LeGrandRestaurant.test
             var jean = new Serveur("Jean", DateTime.Now);
             Table table = new Table();
             Client client = new Client("Catherine");
-            Commande commande = new Commande(jean, client, table);
+            Commande commande = new CommandeBuilder().WithServeur(jean)
+                .WithClient(client)
+                .WithTable(table).
+                Build();
             commande.termine(false);
             commande.Creation = DateTime.Now.AddDays(-16);
 
@@ -82,7 +91,10 @@ namespace LeGrandRestaurant.test
             var jean = new Serveur("Jean", DateTime.Now);
             Table table = new Table();
             Client client = new Client("Catherine");
-            Commande commande = new Commande(jean, client, table);
+            Commande commande = new CommandeBuilder().WithServeur(jean)
+                .WithClient(client)
+                .WithTable(table)
+                .Build();
             commande.termine(false);
             commande.Creation = DateTime.Now.AddDays(-16);
 
