@@ -14,6 +14,16 @@ namespace LeGrandRestaurant.personnes.employes
             tonightTables = new List<Table>();
         }
 
+        public void prendUneCommande(float montantCommande)
+        {
+            this.ca += montantCommande;
+        }
+
+        public void InitCA()
+        {
+            this.ca = 0;
+        }
+
     }
 
 }

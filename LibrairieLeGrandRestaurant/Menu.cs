@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace LeGrandRestaurant
 {
+    //carte de menus d'un restaurant
     public class Menu
     {
         public List<Plat> plats;

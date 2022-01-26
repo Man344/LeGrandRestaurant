@@ -118,22 +118,22 @@ namespace LeGrandRestaurant.test
             {
                 for (int j = 0; j < nbServeurs; j++)
                 {
-                    serveurs[j] = new Serveur();
+                    serveurs[j] = new Serveur("Patrick", new DateTime(year: 2012, month: 12, day: 12));
                 }
-                restaurants[i] = new Restaurant(null, serveurs);
+                restaurants[i] = new Restaurant(false);
             }
 
-            Franchise franchise = new Franchise(restaurants);
+            Franchise franchise = new Franchise(null);
 
             //QUAND tous les serveurs prennent une commande d'un montant Z 
-            float CATotal = 0;
+            double CATotal = 0;
             for(int i = 0; i < nbRestaurant; i++)
             {
                 for (int j = 0; j < nbServeurs; j++)
                 {
                     serveurs[j].InitCA();
                     serveurs[j].prendUneCommande(prixCommande);
-                    CATotal += serveurs[j].CA;
+                    CATotal += serveurs[j].ca;
                 }
             }
 
