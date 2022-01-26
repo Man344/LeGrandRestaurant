@@ -53,7 +53,7 @@ namespace LeGrandRestaurant.test
         public void AlreadyPresentClient()
         {
             // ÉTANT DONNE une table occupée par un client
-            Restaurant resto = new Restaurant(false);
+            Restaurant resto = new RestaurantBuilder().Build();
             resto.DébuterService();
             Table table = new Table();
             resto.tables.Add(table);
