@@ -1,5 +1,6 @@
 ﻿using LeGrandRestaurant.personnes;
 using LeGrandRestaurant.personnes.employes;
+using LeGrandRestaurant.test.Builder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -62,7 +63,7 @@ namespace LeGrandRestaurant.test
             commande.termine(false);
             commande.Creation = DateTime.Now.AddDays(-16);
 
-            Restaurant restaurant = new Restaurant(false);
+            Restaurant restaurant = new RestaurantBuilder().Build();
             restaurant.commandes.Add(commande);
 
             // QUAND on consulte la liste des commandes à transmettre du restaurant
@@ -85,7 +86,7 @@ namespace LeGrandRestaurant.test
             commande.termine(false);
             commande.Creation = DateTime.Now.AddDays(-16);
 
-            Restaurant restaurant = new Restaurant(false);
+            Restaurant restaurant = new RestaurantBuilder().Build();
             restaurant.commandes.Add(commande);
 
             // QUAND elle est marquée comme transmise à la gendarmerie

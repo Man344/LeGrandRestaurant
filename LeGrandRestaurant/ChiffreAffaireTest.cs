@@ -1,5 +1,6 @@
 ﻿using LeGrandRestaurant.personnes;
 using LeGrandRestaurant.personnes.employes;
+using LeGrandRestaurant.test.Builder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -71,7 +72,7 @@ namespace LeGrandRestaurant.test
         public void CA_Franchise_A_Montants_XServeurs_YCommandes(int nbServeur, double montantCommande)
         {
             //ÉTANT DONNÉ un restaurant ayant X serveurs
-            Restaurant resto = new Restaurant(false);
+            Restaurant resto = new RestaurantBuilder().Build();
          
             for (int i = 0; i < nbServeur ; i++)
             {
@@ -118,9 +119,9 @@ namespace LeGrandRestaurant.test
             {
                 for (int j = 0; j < nbServeurs; j++)
                 {
-                    serveurs[j] = new Serveur("Patrick", new DateTime(year: 2012, month: 12, day: 12));
+                    serveurs[j] = new Serveur("test", DateTime.Now);
                 }
-                restaurants[i] = new Restaurant(false);
+                restaurants[i] = new RestaurantBuilder().WithServeurs(serveurs.ToList()).Build();
             }
 
             Franchise franchise = new Franchise(null);

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using LeGrandRestaurant.test.Builder;
 using Xunit;
 
 namespace LeGrandRestaurant.test
@@ -13,7 +14,7 @@ namespace LeGrandRestaurant.test
         public void AffectationClient()
         {
             // ÉTANT DONNE une table dans un restaurant ayant débuté son service
-            Restaurant resto = new Restaurant(false);
+            Restaurant resto = new RestaurantBuilder().Build();
             resto.DébuterService();
             Table table = new Table();
             resto.tables.Add(table);
@@ -32,7 +33,7 @@ namespace LeGrandRestaurant.test
         public void DesaffectationClient()
         {
             // ÉTANT DONNE une table occupée par un client
-            Restaurant resto = new Restaurant(false);
+            Restaurant resto = new RestaurantBuilder().Build();
             resto.DébuterService();
             Table table = new Table();
             resto.tables.Add(table);
@@ -71,7 +72,7 @@ namespace LeGrandRestaurant.test
         public void ServiceEnd()
         {
             // ÉTANT DONNE un restaurant ayant une table occupée par un client
-            Restaurant resto = new Restaurant(false);
+            Restaurant resto = new RestaurantBuilder().Build();
             resto.DébuterService();
             Table table = new Table();
             resto.tables.Add(table);
@@ -90,7 +91,7 @@ namespace LeGrandRestaurant.test
         public void NextFreeTable()
         {
             // ÉTANT DONNÉ un restaurant ayant deux tables, dont une occupée
-            Restaurant resto = new Restaurant(false);
+            Restaurant resto = new RestaurantBuilder().Build();
             resto.DébuterService();
             Table table = new Table();
             resto.tables.Add(table);
@@ -113,7 +114,7 @@ namespace LeGrandRestaurant.test
         public void NoFreeTable()
         {
             // ÉTANT DONNÉ un restaurant ayant deux tables, toutes occupées
-            Restaurant resto = new Restaurant(false);
+            Restaurant resto = new RestaurantBuilder().Build();
             resto.DébuterService();
             Table table1 = new Table();
             resto.tables.Add(table1);
