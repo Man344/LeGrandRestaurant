@@ -1,5 +1,6 @@
 ﻿
 using System.Collections.Generic;
+using LeGrandRestaurant.personnes.employes;
 
 namespace LeGrandRestaurant.test.Builder
 {
