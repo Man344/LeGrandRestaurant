@@ -4,72 +4,69 @@
 
 ### :heavy_check_mark: SCOPE Serveur
 
-:heavy_check_mark: 
     ÉTANT DONNÉ un nouveau serveur
     QUAND on récupére son chiffre d'affaires
     ALORS celui-ci est à 0
 
 -----
 
-:heavy_check_mark: 
     ÉTANT DONNÉ un nouveau serveur
     QUAND il prend une commande
     ALORS son chiffre d'affaires est le montant de celle-ci
 
 -----
 
-:heavy_check_mark: 
     ÉTANT DONNÉ un serveur ayant déjà pris une commande
     QUAND il prend une nouvelle commande
     ALORS son chiffre d'affaires est la somme des deux commandes
 
 ### :heavy_check_mark: SCOPE DebutService
 
-    :heavy_check_mark: ÉTANT DONNE un restaurant ayant 3 tables
+    ÉTANT DONNE un restaurant ayant 3 tables
     QUAND le service commence
     ALORS elles sont toutes affectées au Maître d'Hôtel
 
-    ----------------
+-----
 
-    :heavy_check_mark: ÉTANT DONNÉ un restaurant ayant 3 tables dont une affectée à un serveur
+    ÉTANT DONNÉ un restaurant ayant 3 tables dont une affectée à un serveur
     QUAND le service débute
     ALORS la table éditée est affectée au serveur et les deux autres au maître d'hôtel
 
-    ----------------
+-----
 
-    :heavy_check_mark: ÉTANT DONNÉ un restaurant ayant 3 tables dont une affectée à un serveur
+    ÉTANT DONNÉ un restaurant ayant 3 tables dont une affectée à un serveur
     QUAND le service débute
     ALORS il n'est pas possible de modifier le serveur affecté à la table
 
-    ----------------
+-----
 
-    :heavy_check_mark: ÉTANT DONNÉ un restaurant ayant 3 tables dont une affectée à un serveur
+    ÉTANT DONNÉ un restaurant ayant 3 tables dont une affectée à un serveur
     ET ayant débuté son service
     QUAND le service se termine
     ET qu'une table est affectée à un serveur
     ALORS la table éditée est affectée au serveur et les deux autres au maître d'hôtel
 
 ### :heavy_check_mark: SCOPE Epinglage
-
-    :heavy_check_mark: ÉTANT DONNE un serveur ayant pris une commande
+    
+    ÉTANT DONNE un serveur ayant pris une commande
     QUAND il la déclare comme non-payée
     ALORS cette commande est marquée comme épinglée
 
-    ----------------
-
-    :heavy_check_mark: ÉTANT DONNE un serveur ayant épinglé une commande
+-----
+    
+    ÉTANT DONNE un serveur ayant épinglé une commande
     QUAND elle date d'il y a au moins 15 jours
     ALORS cette commande est marquée comme à transmettre gendarmerie
 
-    ----------------
-
-    :heavy_check_mark: ÉTANT DONNE une commande à transmettre gendarmerie
+-----
+    
+    ÉTANT DONNE une commande à transmettre gendarmerie
     QUAND on consulte la liste des commandes à transmettre du restaurant
     ALORS elle y figure
 
-    ----------------
-
-    :heavy_check_mark: ÉTANT DONNE une commande à transmettre gendarmerie
+-----
+    
+    ÉTANT DONNE une commande à transmettre gendarmerie
     QUAND elle est marquée comme transmise à la gendarmerie
     ALORS elle ne figure plus dans la liste des commandes à transmettre du restaurant
 
