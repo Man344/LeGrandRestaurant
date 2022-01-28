@@ -72,39 +72,39 @@
 
 ### :heavy_check_mark: SCOPE Menus
 
-    :heavy_check_mark: ÉTANT DONNE un restaurant ayant le statut de filiale d'une franchise
+    ÉTANT DONNE un restaurant ayant le statut de filiale d'une franchise
     ET une franchise définissant un menu ayant un plat
     QUAND la franchise modifie le prix du plat
     ALORS le prix du plat dans le menu du restaurant est celui défini par la franchise
 
-    ----------------
+-----
 
-    :heavy_check_mark: ÉTANT DONNE un restaurant appartenant à une franchise et définissant un menu ayant un plat
+    ÉTANT DONNE un restaurant appartenant à une franchise et définissant un menu ayant un plat
     ET une franchise définissant un menu ayant le même plat
     QUAND la franchise modifie le prix du plat
     ALORS le prix du plat dans le menu du restaurant reste inchangé
 
-    ----------------
+-----
 
-    :heavy_check_mark: ÉTANT DONNE un restaurant appartenant à une franchise et définissant un menu ayant un plat
+    ÉTANT DONNE un restaurant appartenant à une franchise et définissant un menu ayant un plat
     QUAND la franchise ajoute un nouveau plat
     ALORS la carte du restaurant propose le premier plat au prix du restaurant et le second au prix de la franchise
 
-    ----------------
+-----
 
-    :heavy_check_mark: ÉTANT DONNE un serveur dans un restaurant
+    ÉTANT DONNE un serveur dans un restaurant
     QUAND il prend une commande de nourriture
     ALORS cette commande apparaît dans la liste de tâches de la cuisine de ce restaurant
 
-    ----------------
+-----
 
-    :heavy_check_mark: ÉTANT DONNE un serveur dans un restaurant
+    ÉTANT DONNE un serveur dans un restaurant
     QUAND il prend une commande de boissons
     ALORS cette commande n'apparaît pas dans la liste de tâches de la cuisine de ce restaurant
 
 ### :heavy_check_mark: SCOPE Restaurant
 
-    :heavy_check_mark: ÉTANT DONNÉ un restaurant ayant X serveurs
+    ÉTANT DONNÉ un restaurant ayant X serveurs
     QUAND tous les serveurs prennent une commande d'un montant Y
     ALORS le chiffre d'affaires de la franchise est X * Y
     CAS(X = 0; X = 1; X = 2; X = 100)
@@ -112,7 +112,7 @@
 
 ### :heavy_check_mark: SCOPE Franchise
 
-    :x: ÉTANT DONNÉ une franchise ayant X restaurants de Y serveurs chacuns
+    ÉTANT DONNÉ une franchise ayant X restaurants de Y serveurs chacuns
     QUAND tous les serveurs prennent une commande d'un montant Z
     ALORS le chiffre d'affaires de la franchise est X * Y * Z
     CAS(X = 0; X = 1; X = 2; X = 1000)
@@ -121,12 +121,12 @@
 
 ### :x: SCOPE Commande
 
-	:x: ÉTANT DONNE un serveur dans un restaurant
+	ÉTANT DONNE un serveur dans un restaurant
 	QUAND il prend une commande de nourriture
 	ALORS cette commande apparaît dans la liste de tâches de la cuisine de ce restaurant
 
-    ----------------
+-----
 
-	:x: ÉTANT DONNE un serveur dans un restaurant
+	ÉTANT DONNE un serveur dans un restaurant
 	QUAND il prend une commande de boissons
 	ALORS cette commande n'apparaît pas dans la liste de tâches de la cuisine de ce restaurant
