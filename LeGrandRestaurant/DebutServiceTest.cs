@@ -64,7 +64,7 @@ namespace LeGrandRestaurant.test
             restaurant.tables.Add(new Table());
             Table table = new Table();
             Serveur serveur = new Serveur("John", new DateTime(1922 / 2 / 22));
-            serveur.tonightTables.Add(table);
+            serveur.affecter(table);
 
             restaurant.tables.Add(table);
             restaurant.serveurs.Add(serveur);
@@ -74,7 +74,9 @@ namespace LeGrandRestaurant.test
             restaurant.DébuterService();
 
             //ALORS il n'est pas possible de modifier le serveur affecté à la table
-            
+            Serveur serveur2 = new Serveur("Voleur de table", new DateTime(2050, 1, 20));
+            void Act() => serveur2.affecter(table);
+            Assert.Throws<Exception>(Act);
         }
 
 
