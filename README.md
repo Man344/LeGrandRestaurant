@@ -4,21 +4,21 @@
 
 ### :heavy_check_mark: SCOPE Serveur
 
-    `:heavy_check_mark: ÉTANT DONNÉ un nouveau serveur
-    QUAND on récupére son chiffre d'affaires
-    ALORS celui-ci est à 0`
+:heavy_check_mark: ÉTANT DONNÉ un nouveau serveur
+QUAND on récupére son chiffre d'affaires
+ALORS celui-ci est à 0
 
-    ----------------
+----------------
 
-    :heavy_check_mark: ÉTANT DONNÉ un nouveau serveur
-    QUAND il prend une commande
-    ALORS son chiffre d'affaires est le montant de celle-ci
+:heavy_check_mark: ÉTANT DONNÉ un nouveau serveur
+QUAND il prend une commande
+ALORS son chiffre d'affaires est le montant de celle-ci
 
-    ----------------
+----------------
 
-    :heavy_check_mark: ÉTANT DONNÉ un serveur ayant déjà pris une commande
-    QUAND il prend une nouvelle commande
-    ALORS son chiffre d'affaires est la somme des deux commandes
+:heavy_check_mark: ÉTANT DONNÉ un serveur ayant déjà pris une commande
+QUAND il prend une nouvelle commande
+ALORS son chiffre d'affaires est la somme des deux commandes
 
 ### :heavy_check_mark: SCOPE DebutService
 
