@@ -72,7 +72,7 @@ namespace LeGrandRestaurant.test
             commande.termine(false);
             commande.Creation = DateTime.Now.AddDays(-16);
 
-            Restaurant restaurant = new RestaurantBuilder().Build();
+            Restaurant restaurant = new RestaurantBuilder().Build(new MaitreHotel("Caro", new DateTime(2000, 6, 12)));
             restaurant.commandes.Add(commande);
 
             // QUAND on consulte la liste des commandes à transmettre du restaurant
@@ -98,7 +98,7 @@ namespace LeGrandRestaurant.test
             commande.termine(false);
             commande.Creation = DateTime.Now.AddDays(-16);
 
-            Restaurant restaurant = new RestaurantBuilder().Build();
+            Restaurant restaurant = new RestaurantBuilder().Build(new MaitreHotel("Caro", new DateTime(2000, 6, 12)));
             restaurant.commandes.Add(commande);
 
             // QUAND elle est marquée comme transmise à la gendarmerie

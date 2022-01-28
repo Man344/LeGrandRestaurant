@@ -61,6 +61,6 @@ namespace LeGrandRestaurant.test.Builder
             return this;
         }
 
-        public Restaurant Build() => new Restaurant(_IsFiliale);
+        public Restaurant Build(MaitreHotel maitreHotel) => new Restaurant(_IsFiliale, maitreHotel);
     }
 }

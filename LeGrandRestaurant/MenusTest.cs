@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LeGrandRestaurant.personnes.employes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,7 @@ namespace LeGrandRestaurant.test
             Menu menu = new Menu();
             menu.plats.Add(plat);
 
-            Franchise franchise = new Franchise(menu);
+            Franchise franchise = new Franchise(menu, new MaitreHotel("Caro", new DateTime(2000, 6, 12)));
             Restaurant filiale = franchise.addFillialeRestaurant();
 
             // QUAND la franchise modifie le prix du plat
@@ -43,7 +44,7 @@ namespace LeGrandRestaurant.test
             Menu menu = new Menu();
             menu.plats.Add(plat);
 
-            Franchise franchise = new Franchise(menu);
+            Franchise franchise = new Franchise(menu, new MaitreHotel("Caro", new DateTime(2000, 6, 12)));
             Restaurant filiale = franchise.addRestaurant();
 
 

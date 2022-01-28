@@ -13,24 +13,27 @@ namespace LeGrandRestaurant
         public List<Table> tables;
         public List<Serveur> serveurs;
         public List<Commande> commandes;
+        public MaitreHotel maitreHotel;
         public Menu menu;
 
         public bool EnService { get; private set; } = false;
         public bool IsFiliale { get; private set; }
 
 
-        public Restaurant(bool isFiliale)
+        public Restaurant(bool isFiliale, MaitreHotel maitreHotel)
         {
             this.IsFiliale = isFiliale;
             menu = new Menu();
             serveurs = new List<Serveur>();
             tables = new List<Table>();
             commandes = new List<Commande>();
+            this.maitreHotel = maitreHotel;
         }
 
         public void DébuterService()
         {
             EnService = true;
+            maitreHotel.actualTables = tables;
         }
 
         public void TerminerService()

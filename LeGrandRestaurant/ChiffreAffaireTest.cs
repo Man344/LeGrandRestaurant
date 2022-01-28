@@ -81,7 +81,7 @@ namespace LeGrandRestaurant.test
         public void CA_Franchise_A_Montants_XServeurs_YCommandes(int nbServeur, double montantCommande)
         {
             //ÉTANT DONNÉ un restaurant ayant X serveurs
-            Restaurant resto = new RestaurantBuilder().Build();
+            Restaurant resto = new RestaurantBuilder().Build(new MaitreHotel("Caro", new DateTime(2000, 6, 12)));
          
             for (int i = 0; i < nbServeur ; i++)
             {
@@ -133,10 +133,10 @@ namespace LeGrandRestaurant.test
                 {
                     serveurs[j] = new Serveur("test", DateTime.Now);
                 }
-                restaurants[i] = new RestaurantBuilder().WithServeurs(serveurs.ToList()).Build();
+                restaurants[i] = new RestaurantBuilder().WithServeurs(serveurs.ToList()).Build(new MaitreHotel("Caro", new DateTime(2000, 6, 12)));
             }
 
-            Franchise franchise = new Franchise(null);
+            Franchise franchise = new Franchise(null, new MaitreHotel("Caro", new DateTime(2000, 6, 12)));
 
             //QUAND tous les serveurs prennent une commande d'un montant Z 
             double CATotal = 0;
