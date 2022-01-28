@@ -4,9 +4,9 @@
 
 ### :heavy_check_mark: SCOPE Serveur
 
-    :heavy_check_mark: ÉTANT DONNÉ un nouveau serveur
+    `:heavy_check_mark: ÉTANT DONNÉ un nouveau serveur
     QUAND on récupére son chiffre d'affaires
-    ALORS celui-ci est à 0
+    ALORS celui-ci est à 0`
 
     ----------------
 
