@@ -8,13 +8,13 @@
     QUAND on récupére son chiffre d'affaires
     ALORS celui-ci est à 0
 
-    -------
+    -
 
     :heavy_check_mark: ÉTANT DONNÉ un nouveau serveur
     QUAND il prend une commande
     ALORS son chiffre d'affaires est le montant de celle-ci
 
-    -------
+    -
 
     :heavy_check_mark: ÉTANT DONNÉ un serveur ayant déjà pris une commande
     QUAND il prend une nouvelle commande
@@ -26,19 +26,19 @@
     QUAND le service commence
     ALORS elles sont toutes affectées au Maître d'Hôtel
 
-    -------
+    -
 
     :heavy_check_mark: ÉTANT DONNÉ un restaurant ayant 3 tables dont une affectée à un serveur
     QUAND le service débute
     ALORS la table éditée est affectée au serveur et les deux autres au maître d'hôtel
 
-    -------
+    -
 
     :heavy_check_mark: ÉTANT DONNÉ un restaurant ayant 3 tables dont une affectée à un serveur
     QUAND le service débute
     ALORS il n'est pas possible de modifier le serveur affecté à la table
 
-    -------
+    -
 
     :heavy_check_mark: ÉTANT DONNÉ un restaurant ayant 3 tables dont une affectée à un serveur
     ET ayant débuté son service
@@ -52,19 +52,19 @@
     QUAND il la déclare comme non-payée
     ALORS cette commande est marquée comme épinglée
 
-    -------
+    -
 
     :heavy_check_mark: ÉTANT DONNE un serveur ayant épinglé une commande
     QUAND elle date d'il y a au moins 15 jours
     ALORS cette commande est marquée comme à transmettre gendarmerie
 
-    -------
+    -
 
     :heavy_check_mark: ÉTANT DONNE une commande à transmettre gendarmerie
     QUAND on consulte la liste des commandes à transmettre du restaurant
     ALORS elle y figure
 
-    -------
+    -
 
     :heavy_check_mark: ÉTANT DONNE une commande à transmettre gendarmerie
     QUAND elle est marquée comme transmise à la gendarmerie
@@ -77,26 +77,26 @@
     QUAND la franchise modifie le prix du plat
     ALORS le prix du plat dans le menu du restaurant est celui défini par la franchise
 
-    -------
+    -
 
     :heavy_check_mark: ÉTANT DONNE un restaurant appartenant à une franchise et définissant un menu ayant un plat
     ET une franchise définissant un menu ayant le même plat
     QUAND la franchise modifie le prix du plat
     ALORS le prix du plat dans le menu du restaurant reste inchangé
 
-    -------
+    -
 
     :heavy_check_mark: ÉTANT DONNE un restaurant appartenant à une franchise et définissant un menu ayant un plat
     QUAND la franchise ajoute un nouveau plat
     ALORS la carte du restaurant propose le premier plat au prix du restaurant et le second au prix de la franchise
 
-    -------
+    -
 
     :heavy_check_mark: ÉTANT DONNE un serveur dans un restaurant
     QUAND il prend une commande de nourriture
     ALORS cette commande apparaît dans la liste de tâches de la cuisine de ce restaurant
 
-    -------
+    -
 
     :heavy_check_mark: ÉTANT DONNE un serveur dans un restaurant
     QUAND il prend une commande de boissons
@@ -125,7 +125,7 @@
 	QUAND il prend une commande de nourriture
 	ALORS cette commande apparaît dans la liste de tâches de la cuisine de ce restaurant
 
-    -------
+    -
 
 	:x: ÉTANT DONNE un serveur dans un restaurant
 	QUAND il prend une commande de boissons
