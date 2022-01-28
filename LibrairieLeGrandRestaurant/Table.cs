@@ -9,6 +9,7 @@ namespace LeGrandRestaurant
     public class Table
     {
         public bool EstLibre { get; private set; } = true;
+        public bool isAffected = false;
 
         public void InstallerClient()
         {

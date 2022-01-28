@@ -136,7 +136,7 @@ namespace LeGrandRestaurant.test
                 restaurants[i] = new RestaurantBuilder().WithServeurs(serveurs.ToList()).Build(new MaitreHotel("Caro", new DateTime(2000, 6, 12)));
             }
 
-            Franchise franchise = new Franchise(null, new MaitreHotel("Caro", new DateTime(2000, 6, 12)));
+            Franchise franchise = new Franchise(null);
 
             //QUAND tous les serveurs prennent une commande d'un montant Z 
             double CATotal = 0;

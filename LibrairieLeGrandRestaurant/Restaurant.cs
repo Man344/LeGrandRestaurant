@@ -83,5 +83,19 @@ namespace LeGrandRestaurant
             return ca;
         }
 
+        public void setNewPrix(Plat plat, double newPrix)
+        {
+            if (menu.plats.Contains(plat))
+            {
+                menu.plats.Remove(plat);
+                plat.prix = newPrix;
+                menu.plats.Add(plat);
+            }
+            else
+            {
+                throw new Exception("Ce Restaurant n'a pas ce plat");
+            }
+        }
+
     }
 }

@@ -24,6 +24,27 @@ namespace LeGrandRestaurant.personnes.employes
             this.ca = 0;
         }
 
+        public void affecter(Table table)
+        {
+            if (table.isAffected)
+            {
+                throw new Exception("Cette table est déjà affectée");
+            }
+            tonightTables.Add(table);
+        }
+
+        public void desaffecter(Table table)
+        {
+            if (tonightTables.Contains(table))
+            {
+                tonightTables.Remove(table);
+            }
+            else
+            {
+                throw new Exception("Cette table n'est pas affecté à ce serveur");
+            }
+        }
+
     }
 
 }
