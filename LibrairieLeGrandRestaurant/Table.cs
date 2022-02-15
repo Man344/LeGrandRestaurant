@@ -9,6 +9,7 @@ namespace LeGrandRestaurant
     public class Table
     {
 
+
         private readonly IEtatTable etatTable;
 
         public Table(IEtatTable etatTable)
@@ -20,6 +21,7 @@ namespace LeGrandRestaurant
             get => etatTable.EstLibre;
             private set => etatTable.EstLibre = value;
         }
+
 
         public void InstallerClient()
         {

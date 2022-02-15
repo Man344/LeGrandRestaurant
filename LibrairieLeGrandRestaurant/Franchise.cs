@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LeGrandRestaurant.personnes.employes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,7 @@ namespace LeGrandRestaurant
         public List<Restaurant> Filliales { get; private set; } = new List<Restaurant>();
 
         public Menu menu { get; private set; }
-        public void setMenu(Menu menu)
+        public void updateMenu(Menu menu)
         {
             this.menu = menu;
             Filliales.ForEach(x => x.menu = menu);
@@ -22,17 +23,17 @@ namespace LeGrandRestaurant
             this.menu = menu;
         }
 
-        public Restaurant addFillialeRestaurant()
+        public Restaurant addFillialeRestaurant(MaitreHotel maitreHotel)
         {
-            Restaurant filliale = new Restaurant(true);
+            Restaurant filliale = new Restaurant(true, maitreHotel);
             filliale.menu = menu;
             Filliales.Add(filliale);
             return filliale;
         }
 
-        public Restaurant addRestaurant()
+        public Restaurant addRestaurant(MaitreHotel maitreHotel)
         {
-            Restaurant filliale = new Restaurant(false);
+            Restaurant filliale = new Restaurant(false, maitreHotel);
             filliale.menu = menu;
             return filliale;
         }

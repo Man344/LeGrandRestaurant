@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using LeGrandRestaurant.personnes.employes;
 using LeGrandRestaurant.test.Builder;
 using Xunit;
 
@@ -14,7 +15,7 @@ namespace LeGrandRestaurant.test
         public void AffectationClient()
         {
             // ÉTANT DONNE une table dans un restaurant ayant débuté son service
-            Restaurant resto = new RestaurantBuilder().Build();
+            Restaurant resto = new RestaurantBuilder().Build(new MaitreHotel("Caro", new DateTime(2000, 6, 12)));
             resto.DébuterService();
             Table table = new TableBuilder().BuildEnMemoire();
             resto.tables.Add(table);
@@ -33,7 +34,7 @@ namespace LeGrandRestaurant.test
         public void DesaffectationClient()
         {
             // ÉTANT DONNE une table occupée par un client
-            Restaurant resto = new RestaurantBuilder().Build();
+            Restaurant resto = new RestaurantBuilder().Build(new MaitreHotel("Caro", new DateTime(2000, 6, 12)));
             resto.DébuterService();
             Table table = new TableBuilder().BuildEnMemoire();
             resto.tables.Add(table);
@@ -53,7 +54,7 @@ namespace LeGrandRestaurant.test
         public void AlreadyPresentClient()
         {
             // ÉTANT DONNE une table occupée par un client
-            Restaurant resto = new RestaurantBuilder().Build();
+            Restaurant resto = new RestaurantBuilder().Build(new MaitreHotel("Caro", new DateTime(2000, 6, 12)));
             resto.DébuterService();
             Table table = new TableBuilder().BuildAPlat();
             resto.tables.Add(table);
@@ -72,7 +73,7 @@ namespace LeGrandRestaurant.test
         public void ServiceEnd()
         {
             // ÉTANT DONNE un restaurant ayant une table occupée par un client
-            Restaurant resto = new RestaurantBuilder().Build();
+            Restaurant resto = new RestaurantBuilder().Build(new MaitreHotel("Caro", new DateTime(2000, 6, 12)));
             resto.DébuterService();
             Table table = new TableBuilder().BuildEnMemoire();
             resto.tables.Add(table);
@@ -91,7 +92,7 @@ namespace LeGrandRestaurant.test
         public void NextFreeTable()
         {
             // ÉTANT DONNÉ un restaurant ayant deux tables, dont une occupée
-            Restaurant resto = new RestaurantBuilder().Build();
+            Restaurant resto = new RestaurantBuilder().Build(new MaitreHotel("Caro", new DateTime(2000, 6, 12)));
             resto.DébuterService();
             Table table = new TableBuilder().BuildEnMemoire();
             resto.tables.Add(table);
@@ -114,7 +115,7 @@ namespace LeGrandRestaurant.test
         public void NoFreeTable()
         {
             // ÉTANT DONNÉ un restaurant ayant deux tables, toutes occupées
-            Restaurant resto = new RestaurantBuilder().Build();
+            Restaurant resto = new RestaurantBuilder().Build(new MaitreHotel("Caro", new DateTime(2000, 6, 12)));
             resto.DébuterService();
             Table table1 = new TableBuilder().BuildAPlat();
             resto.tables.Add(table1);
