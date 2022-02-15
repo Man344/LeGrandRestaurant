@@ -3,12 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeGrandRestaurant.test", "LeGrandRestaurant\LeGrandRestaurant.test.csproj", "{AA26CAE4-3BA6-4168-A3A3-34C6113B091D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeGrandRestaurant.test", "LeGrandRestaurant\LeGrandRestaurant.test.csproj", "{AA26CAE4-3BA6-4168-A3A3-34C6113B091D}"
 	ProjectSection(ProjectDependencies) = postProject
 		{5AAFB194-A650-4852-B430-AAF073377DBA} = {5AAFB194-A650-4852-B430-AAF073377DBA}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeGrandRestaurant", "LibrairieLeGrandRestaurant\LeGrandRestaurant.csproj", "{5AAFB194-A650-4852-B430-AAF073377DBA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeGrandRestaurant", "LibrairieLeGrandRestaurant\LeGrandRestaurant.csproj", "{5AAFB194-A650-4852-B430-AAF073377DBA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
