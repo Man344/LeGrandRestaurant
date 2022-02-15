@@ -19,7 +19,7 @@ namespace LeGrandRestaurant.test
         {
             // ÉTANT DONNE un serveur ayant pris une commande
             Serveur jean = new Serveur("Jean", DateTime.Now);
-            Table table = new Table();
+            Table table = new TableBuilder().BuildAPlat();
             Client client = new Client("Catherine");
             Commande commande = new CommandeBuilder().WithServeur(jean)
                 .WithClient(client)
@@ -41,7 +41,7 @@ namespace LeGrandRestaurant.test
         {
             // ÉTANT DONNE un serveur ayant épinglé une commande
             var jean = new Serveur("Jean", DateTime.Now);
-            Table table = new Table();
+            Table table = new TableBuilder().BuildAPlat();
             Client client = new Client("Catherine");
             Commande commande = new CommandeBuilder().WithServeur(jean)
                 .WithClient(client)
@@ -63,7 +63,7 @@ namespace LeGrandRestaurant.test
         {
             // ÉTANT DONNE une commande à transmettre gendarmerie
             var jean = new Serveur("Jean", DateTime.Now);
-            Table table = new Table();
+            Table table = new TableBuilder().BuildAPlat();
             Client client = new Client("Catherine");
             Commande commande = new CommandeBuilder().WithServeur(jean)
                 .WithClient(client)
@@ -89,7 +89,7 @@ namespace LeGrandRestaurant.test
         {
             // ÉTANT DONNE une commande à transmettre gendarmerie
             var jean = new Serveur("Jean", DateTime.Now);
-            Table table = new Table();
+            Table table = new TableBuilder().BuildAPlat();
             Client client = new Client("Catherine");
             Commande commande = new CommandeBuilder().WithServeur(jean)
                 .WithClient(client)

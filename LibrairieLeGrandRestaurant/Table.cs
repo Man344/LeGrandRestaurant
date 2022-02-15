@@ -8,8 +8,20 @@ namespace LeGrandRestaurant
 {
     public class Table
     {
-        public bool EstLibre { get; private set; } = true;
-        public bool isAffected = false;
+
+
+        private readonly IEtatTable etatTable;
+
+        public Table(IEtatTable etatTable)
+        {
+            this.etatTable = etatTable;
+            this.etatTable.EstLibre = true;
+        }
+        public bool EstLibre {
+            get => etatTable.EstLibre;
+            private set => etatTable.EstLibre = value;
+        }
+
 
         public void InstallerClient()
         {
