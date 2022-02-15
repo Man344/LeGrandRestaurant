@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeGrandRestaurant
+namespace LeGrandRestaurant.etats.table
 {
-
-    
     public interface IEtatTable
     {
-        bool EstLibre { get; set; }
+        public bool EstLibre { get; set; }
+        public bool EstAssociee { get; set; }
     }
 }

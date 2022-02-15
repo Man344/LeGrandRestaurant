@@ -26,9 +26,12 @@ namespace LeGrandRestaurant.personnes.employes
 
         public void affecter(Table table)
         {
-            if (table.isAffected)
+            try
             {
-                throw new Exception("Cette table est déjà affectée");
+                table.associatedToServeur();
+            }catch (Exception ex)
+            {
+                throw new Exception();
             }
             tonightTables.Add(table);
         }

@@ -1,8 +1,11 @@
-﻿
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using LeGrandRestaurant.personnes.employes;
 
-namespace LeGrandRestaurant.test.Builder
+namespace LeGrandRestaurant.tests.builders
 {
     public class RestaurantBuilder
     {
@@ -11,7 +14,7 @@ namespace LeGrandRestaurant.test.Builder
         private List<Serveur> _serveurs;
         private List<Commande> _commandes;
         private Menu _menu;
-        private bool _EnService = false;
+        private bool _EnService;
         private bool _IsFiliale;
 
         public RestaurantBuilder()
@@ -22,7 +25,6 @@ namespace LeGrandRestaurant.test.Builder
             _menu = new Menu();
             _EnService = false;
             _IsFiliale = false;
-
         }
 
         public RestaurantBuilder WithTables(List<Table> tables)

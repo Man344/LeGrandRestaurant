@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace LeGrandRestaurant.test
+namespace LeGrandRestaurant.etats.table
 {
     public class StockageEtatTablePlat : IEtatTable
     {
@@ -21,6 +21,7 @@ namespace LeGrandRestaurant.test
                 File.WriteAllText(fileName, jsonString);
             }
         }
+        public bool EstAssociee { get; set; }
 
     }
 }

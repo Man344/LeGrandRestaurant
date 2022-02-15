@@ -1,12 +1,12 @@
 ﻿using LeGrandRestaurant.personnes;
 using LeGrandRestaurant.personnes.employes;
-using LeGrandRestaurant.test.Builder;
+using LeGrandRestaurant.tests.builders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
-namespace LeGrandRestaurant.test
+namespace LeGrandRestaurant.tests
 {
     public class DebutServiceTest
     {
@@ -20,9 +20,9 @@ namespace LeGrandRestaurant.test
         {
             //ÉTANT DONNE un restaurant ayant 3 tables
             Restaurant restaurant = new Restaurant(true, new MaitreHotel("Caro", new DateTime(2000, 6, 12)));
-            restaurant.tables.Add(new Table());
-            restaurant.tables.Add(new Table());
-            restaurant.tables.Add(new Table());
+            restaurant.tables.Add(TableBuilder.BuildEnMemoire());
+            restaurant.tables.Add(TableBuilder.BuildEnMemoire());
+            restaurant.tables.Add(TableBuilder.BuildEnMemoire());
             //QUAND le service commence
             restaurant.DébuterService();
             //ALORS elles sont toutes affectées au Maître d'Hôtel
@@ -43,7 +43,7 @@ namespace LeGrandRestaurant.test
             // QUAND le service débute
             Commande commande = new CommandeBuilder().WithServeur(jean)
                 .WithClient(new Client("Catherine"))
-                .WithTable(new Table())
+                .WithTable(TableBuilder.BuildEnMemoire())
                 .Build();
             //ALORS la table éditée est affectée au serveur et les deux autres au maître d'hôtel
             Assert.Equal(commande.GetCA(), jean.ca);
@@ -60,9 +60,9 @@ namespace LeGrandRestaurant.test
         {
             //ÉTANT DONNÉ un restaurant ayant 3 tables dont une affectée à un serveur
             Restaurant restaurant = new Restaurant(true, new MaitreHotel("Caro", new DateTime(2000, 6,12)));
-            restaurant.tables.Add(new Table());
-            restaurant.tables.Add(new Table());
-            Table table = new Table();
+            restaurant.tables.Add(TableBuilder.BuildEnMemoire());
+            restaurant.tables.Add(TableBuilder.BuildEnMemoire());
+            Table table = TableBuilder.BuildEnMemoire();
             Serveur serveur = new Serveur("John", new DateTime(1922 / 2 / 22));
             serveur.affecter(table);
 
@@ -92,9 +92,9 @@ namespace LeGrandRestaurant.test
         {
             //ÉTANT DONNÉ un restaurant ayant 3 tables dont une affectée à un serveur
             Restaurant restaurant = new Restaurant(true, new MaitreHotel("Caro", new DateTime(2000, 6, 12)));
-            restaurant.tables.Add(new Table());
-            restaurant.tables.Add(new Table());
-            Table table = new Table();
+            restaurant.tables.Add(TableBuilder.BuildEnMemoire());
+            restaurant.tables.Add(TableBuilder.BuildEnMemoire());
+            Table table = TableBuilder.BuildEnMemoire();
             Serveur serveur = new Serveur("John", new DateTime(1922 / 2 / 22));
             serveur.tonightTables.Add(table);
 

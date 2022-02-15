@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LeGrandRestaurant.etats.table;
 
 namespace LeGrandRestaurant
 {
     public class Table
     {
-
-
         private readonly IEtatTable etatTable;
 
         public Table(IEtatTable etatTable)
@@ -22,6 +21,12 @@ namespace LeGrandRestaurant
             private set => etatTable.EstLibre = value;
         }
 
+        public bool EstAssociee
+        {
+            get => etatTable.EstAssociee;
+            private set => etatTable.EstAssociee = value;
+        }
+
 
         public void InstallerClient()
         {
@@ -32,6 +37,20 @@ namespace LeGrandRestaurant
         public void Libérer()
         {
             EstLibre = true;
+        }
+
+        public void associatedToServeur()
+        {
+            if (EstAssociee)
+            {
+                throw new Exception();
+            }
+            EstAssociee = true;
+        }
+
+        public void notAssociatedAnymore()
+        {
+            EstAssociee = false;
         }
     }
 }
