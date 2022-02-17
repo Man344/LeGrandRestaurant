@@ -9,14 +9,14 @@ namespace LeGrandRestaurant.tests.builders
 {
     public static class TableBuilder
     {
-        public static Table BuildEnMemoire()
+        public static Table BuildEnMemoire(String nomTable)
         {
             return new Table(new StockageEtatTableMemoire());
         }
 
-        public static Table BuildAPlat()
+        public static Table BuildAPlat(String nomTable)
         {
-            return new Table(new StockageEtatTablePlat());
+            return new Table(new StockageEtatTablePlat(nomTable));
         }
     }
 }

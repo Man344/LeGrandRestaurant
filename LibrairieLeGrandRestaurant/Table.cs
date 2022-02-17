@@ -14,7 +14,6 @@ namespace LeGrandRestaurant
         public Table(IEtatTable etatTable)
         {
             this.etatTable = etatTable;
-            this.etatTable.EstLibre = true;
         }
         public bool EstLibre {
             get => etatTable.EstLibre;
@@ -26,7 +25,6 @@ namespace LeGrandRestaurant
             get => etatTable.EstAssociee;
             private set => etatTable.EstAssociee = value;
         }
-
 
         public void InstallerClient()
         {

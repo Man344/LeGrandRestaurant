@@ -17,7 +17,7 @@ namespace LeGrandRestaurant.tests
             // ÉTANT DONNE une table dans un restaurant ayant débuté son service
             Restaurant resto = new RestaurantBuilder().Build(new MaitreHotel("Caro", new DateTime(2000, 6, 12)));
             resto.DébuterService();
-            Table table = TableBuilder.BuildEnMemoire();
+            Table table = TableBuilder.BuildEnMemoire("1");
             resto.tables.Add(table);
 
             // QUAND un client est affecté à une table
@@ -36,7 +36,7 @@ namespace LeGrandRestaurant.tests
             // ÉTANT DONNE une table occupée par un client
             Restaurant resto = new RestaurantBuilder().Build(new MaitreHotel("Caro", new DateTime(2000, 6, 12)));
             resto.DébuterService();
-            Table table = TableBuilder.BuildEnMemoire();
+            Table table = TableBuilder.BuildEnMemoire("1");
             resto.tables.Add(table);
             resto.sitCostumer(table);
 
@@ -56,7 +56,7 @@ namespace LeGrandRestaurant.tests
             // ÉTANT DONNE une table occupée par un client
             Restaurant resto = new RestaurantBuilder().Build(new MaitreHotel("Caro", new DateTime(2000, 6, 12)));
             resto.DébuterService();
-            Table table = TableBuilder.BuildAPlat();
+            Table table = TableBuilder.BuildAPlat("1");
             resto.tables.Add(table);
             resto.sitCostumer(table);
 
@@ -75,7 +75,7 @@ namespace LeGrandRestaurant.tests
             // ÉTANT DONNE un restaurant ayant une table occupée par un client
             Restaurant resto = new RestaurantBuilder().Build(new MaitreHotel("Caro", new DateTime(2000, 6, 12)));
             resto.DébuterService();
-            Table table = TableBuilder.BuildEnMemoire();
+            Table table = TableBuilder.BuildEnMemoire("1");
             resto.tables.Add(table);
             resto.sitCostumer(table);
 
@@ -94,11 +94,11 @@ namespace LeGrandRestaurant.tests
             // ÉTANT DONNÉ un restaurant ayant deux tables, dont une occupée
             Restaurant resto = new RestaurantBuilder().Build(new MaitreHotel("Caro", new DateTime(2000, 6, 12)));
             resto.DébuterService();
-            Table table = TableBuilder.BuildEnMemoire();
+            Table table = TableBuilder.BuildEnMemoire("1");
             resto.tables.Add(table);
             resto.sitCostumer(table);
 
-            var tableLibre = TableBuilder.BuildEnMemoire();
+            var tableLibre = TableBuilder.BuildEnMemoire("1");
             resto.tables.Add(tableLibre);
 
             // QUAND on recherche une table
@@ -117,10 +117,10 @@ namespace LeGrandRestaurant.tests
             // ÉTANT DONNÉ un restaurant ayant deux tables, toutes occupées
             Restaurant resto = new RestaurantBuilder().Build(new MaitreHotel("Caro", new DateTime(2000, 6, 12)));
             resto.DébuterService();
-            Table table1 = TableBuilder.BuildAPlat();
+            Table table1 = TableBuilder.BuildAPlat("1");
             resto.tables.Add(table1);
             resto.sitCostumer(table1);
-            Table table2 = TableBuilder.BuildAPlat();
+            Table table2 = TableBuilder.BuildAPlat("2");
             resto.tables.Add(table2);
             resto.sitCostumer(table2);
 

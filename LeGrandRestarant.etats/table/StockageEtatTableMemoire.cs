@@ -9,6 +9,6 @@ namespace LeGrandRestaurant.etats.table
     public class StockageEtatTableMemoire : IEtatTable
     {
         public bool EstLibre { get; set; } = true;
-        public bool EstAssociee { get; set; }
+        public bool EstAssociee { get; set; } = false;
     }
 }
