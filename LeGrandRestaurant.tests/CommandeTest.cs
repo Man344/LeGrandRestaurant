@@ -1,6 +1,6 @@
 ﻿using LeGrandRestaurant.personnes;
 using LeGrandRestaurant.personnes.employes;
-using LeGrandRestaurant.test.Builder;
+using LeGrandRestaurant.tests.builders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace LeGrandRestaurant.test
+namespace LeGrandRestaurant.tests
 {
     public class CommandeTest
     {

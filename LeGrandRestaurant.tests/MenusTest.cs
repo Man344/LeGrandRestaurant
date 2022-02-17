@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace LeGrandRestaurant.test
+namespace LeGrandRestaurant.tests
 {
     public class MenusTest
     {

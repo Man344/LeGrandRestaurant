@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using LeGrandRestaurant.personnes;
 using LeGrandRestaurant.personnes.employes;
 
-namespace LeGrandRestaurant.test.Builder
+namespace LeGrandRestaurant.tests.builders
 {
     public class CommandeBuilder
     {

@@ -1,16 +1,18 @@
 ﻿using LeGrandRestaurant.personnes;
 using LeGrandRestaurant.personnes.employes;
-using LeGrandRestaurant.test.Builder;
+using LeGrandRestaurant.tests.builders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Xunit;
 
-namespace LeGrandRestaurant.test
+namespace LeGrandRestaurant.tests
 {
     public class ChiffreAffaireTest
     {
-        [Fact(DisplayName= "ÉTANT DONNÉ un nouveau serveur" +
+        [Fact(DisplayName = "ÉTANT DONNÉ un nouveau serveur" +
             " QUAND on récupére son chiffre d'affaires" +
             "ALORS celui - ci est à 0")]
 
@@ -36,7 +38,7 @@ namespace LeGrandRestaurant.test
             // QUAND il prend une commande
             Commande commande = new CommandeBuilder().WithServeur(jean)
                 .WithClient(new Client("Catherine"))
-                .WithTable(new TableBuilder().BuildAPlat())
+                .WithTable(TableBuilder.BuildAPlat("1"))
                 .Build();
             //ALORS son chiffre d'affaires est le montant de celle-ci
             Assert.Equal(commande.GetCA(), jean.ca);
@@ -53,13 +55,13 @@ namespace LeGrandRestaurant.test
             var serveur = new Serveur("Caro", DateTime.Now);
             Commande commande = new CommandeBuilder().WithServeur(serveur)
                 .WithClient(new Client("Catherine"))
-                .WithTable(new TableBuilder().BuildAPlat())
+                .WithTable(TableBuilder.BuildAPlat("1"))
                 .Build();
             commande.addBoisson(new Boisson("coktail", 10));
             //QUAND il prend une nouvelle commande
             Commande commande2 = new CommandeBuilder().WithServeur(serveur)
                 .WithClient(new Client("Catherine"))
-                .WithTable(new TableBuilder().BuildAPlat())
+                .WithTable(TableBuilder.BuildAPlat("2"))
                 .Build();
             commande.addBoisson(new Boisson("coca", 4));
             //ALORS son chiffre d'affaires est la somme des deux commandes
@@ -73,8 +75,8 @@ namespace LeGrandRestaurant.test
             "ALORS le chiffre d'affaires de la franchise est X * Y")]
 
         //CAS(X = 0; X = 1; X = 2; X = 100)
-		//CAS(Y = 1.0)
-        [InlineData(0,1.0)]
+        //CAS(Y = 1.0)
+        [InlineData(0, 1.0)]
         [InlineData(1, 2)]
         [InlineData(2, 1.0)]
         [InlineData(100, 3)]
@@ -82,8 +84,8 @@ namespace LeGrandRestaurant.test
         {
             //ÉTANT DONNÉ un restaurant ayant X serveurs
             Restaurant resto = new RestaurantBuilder().Build(new MaitreHotel("Caro", new DateTime(2000, 6, 12)));
-         
-            for (int i = 0; i < nbServeur ; i++)
+
+            for (int i = 0; i < nbServeur; i++)
             {
                 resto.serveurs.Add(new Serveur(i.ToString(), DateTime.Now));
             }
@@ -93,14 +95,14 @@ namespace LeGrandRestaurant.test
             {
                 Commande commande = new CommandeBuilder().WithServeur(x)
                 .WithClient(new Client("jeanno"))
-                .WithTable(new TableBuilder().BuildAPlat())
+                .WithTable(TableBuilder.BuildAPlat("1"))
                 .Build();
                 commande.addBoisson(new Boisson("oneDollarDrink", montantCommande));
                 resto.commandes.Add(commande);
             });
 
             //ALORS le chiffre d'affaires de la franchise est X * Y
-            Assert.Equal(resto.getCA(), nbServeur*montantCommande);
+            Assert.Equal(resto.getCA(), nbServeur * montantCommande);
 
         }
 
@@ -110,12 +112,12 @@ namespace LeGrandRestaurant.test
             "ALORS le chiffre d'affaires de la franchise est X * Y * Z")]
 
         //CAS(X = 0; X = 1; X = 2; X = 1000)
-		//CAS(Y = 0; Y = 1; Y = 2; Y = 1000)
-		//CAS(Z = 1.0)
+        //CAS(Y = 0; Y = 1; Y = 2; Y = 1000)
+        //CAS(Z = 1.0)
 
-        [InlineData(0,0,1.0)]
-        [InlineData(1,1,1.0)]
-        [InlineData(2,2,1.0)]
+        [InlineData(0, 0, 1.0)]
+        [InlineData(1, 1, 1.0)]
+        [InlineData(2, 2, 1.0)]
         [InlineData(1000, 1000, 1.0)]
 
         public void CA_Franchise_pour_X_Restaurant_avec_Y_Serveurs_prennant_Commande_Z_euros(int nbRestaurant, int nbServeurs, float prixCommande)
@@ -126,8 +128,8 @@ namespace LeGrandRestaurant.test
             Restaurant[] restaurants = new Restaurant[nbRestaurant];
             Serveur[] serveurs = new Serveur[nbServeurs];
 
-            
-            for(int i = 0; i < nbRestaurant; i++)
+
+            for (int i = 0; i < nbRestaurant; i++)
             {
                 for (int j = 0; j < nbServeurs; j++)
                 {
@@ -140,7 +142,7 @@ namespace LeGrandRestaurant.test
 
             //QUAND tous les serveurs prennent une commande d'un montant Z 
             double CATotal = 0;
-            for(int i = 0; i < nbRestaurant; i++)
+            for (int i = 0; i < nbRestaurant; i++)
             {
                 for (int j = 0; j < nbServeurs; j++)
                 {
@@ -151,7 +153,6 @@ namespace LeGrandRestaurant.test
             }
 
             //ALORS le chiffre d'affaires de la franchise est X * Y * Z
-
             Assert.Equal(nbServeurs * prixCommande * nbRestaurant, CATotal);
         }
 
