@@ -21,7 +21,7 @@ namespace LeGrandRestaurant.tests
             //ÉTANT DONNÉ un nouveau serveur
             Serveur serveur = new Serveur("Patrick", new DateTime(year: 2012, month: 12, day: 12));
             //QUAND on récupére son chiffre d'affaires
-            double ChiffreAffaire = serveur.ca;
+            double ChiffreAffaire = serveur.getCA();
             //ALORS celui -ci est à 0
             Assert.Equal(0, ChiffreAffaire);
 
@@ -41,7 +41,7 @@ namespace LeGrandRestaurant.tests
                 .WithTable(TableBuilder.BuildAPlat("1"))
                 .Build();
             //ALORS son chiffre d'affaires est le montant de celle-ci
-            Assert.Equal(commande.GetCA(), jean.ca);
+            Assert.Equal(commande.GetTotal(), jean.getCA());
         }
 
 
@@ -57,16 +57,20 @@ namespace LeGrandRestaurant.tests
                 .WithClient(new Client("Catherine"))
                 .WithTable(TableBuilder.BuildAPlat("1"))
                 .Build();
-            commande.addBoisson(new Boisson("coktail", 10));
+            commande.Boissons.Add(new Boisson("coktail", 10));
+            serveur.prendUneCommande(commande);
+
             //QUAND il prend une nouvelle commande
             Commande commande2 = new CommandeBuilder().WithServeur(serveur)
                 .WithClient(new Client("Catherine"))
                 .WithTable(TableBuilder.BuildAPlat("2"))
                 .Build();
-            commande.addBoisson(new Boisson("coca", 4));
+            commande2.Boissons.Add(new Boisson("coca", 4));
+            serveur.prendUneCommande(commande2);
+
             //ALORS son chiffre d'affaires est la somme des deux commandes
-            double somme = commande.GetCA() + commande2.GetCA();
-            Assert.Equal(somme, serveur.ca);
+            double somme = commande.GetTotal() + commande2.GetTotal();
+            Assert.Equal(somme, serveur.getCA());
         }
 
 
@@ -97,7 +101,7 @@ namespace LeGrandRestaurant.tests
                 .WithClient(new Client("jeanno"))
                 .WithTable(TableBuilder.BuildAPlat("1"))
                 .Build();
-                commande.addBoisson(new Boisson("oneDollarDrink", montantCommande));
+                commande.Boissons.Add(new Boisson("oneDollarDrink", montantCommande));
                 resto.commandes.Add(commande);
             });
 
@@ -125,32 +129,32 @@ namespace LeGrandRestaurant.tests
 
             //ÉTANT DONNÉ une franchise ayant X restaurants de Y serveurs chacuns
 
-            Restaurant[] restaurants = new Restaurant[nbRestaurant];
-            Serveur[] serveurs = new Serveur[nbServeurs];
-
-
-            for (int i = 0; i < nbRestaurant; i++)
-            {
-                for (int j = 0; j < nbServeurs; j++)
-                {
-                    serveurs[j] = new Serveur("test", DateTime.Now);
-                }
-                restaurants[i] = new RestaurantBuilder().WithServeurs(serveurs.ToList()).Build(new MaitreHotel("Caro", new DateTime(2000, 6, 12)));
-            }
-
             Franchise franchise = new Franchise(null);
 
-            //QUAND tous les serveurs prennent une commande d'un montant Z 
-            double CATotal = 0;
             for (int i = 0; i < nbRestaurant; i++)
             {
+                Restaurant restaurant = new Restaurant(true,new MaitreHotel("hector", new DateTime(1420,6,6)));
                 for (int j = 0; j < nbServeurs; j++)
                 {
-                    serveurs[j].InitCA();
-                    serveurs[j].prendUneCommande(prixCommande);
-                    CATotal += serveurs[j].ca;
+                    restaurant.serveurs.Add(new Serveur("test", new DateTime(1420, 6, 6)));
                 }
+                franchise.Filliales.Add(restaurant);
             }
+
+
+            //QUAND tous les serveurs prennent une commande d'un montant Z 
+            Plat plat = new Plat("plat du jour", prixCommande);
+            double CATotal = 0;
+            franchise.Filliales.ForEach(resto =>
+            {
+                resto.serveurs.ForEach(serveur =>
+                {
+                    Commande commande = new Commande(serveur, null, null);
+                    commande.Plats.Add(plat);
+                    serveur.prendUneCommande(commande);
+                    CATotal += serveur.getCA();
+                });
+            });
 
             //ALORS le chiffre d'affaires de la franchise est X * Y * Z
             Assert.Equal(nbServeurs * prixCommande * nbRestaurant, CATotal);

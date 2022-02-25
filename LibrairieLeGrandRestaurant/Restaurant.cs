@@ -20,6 +20,7 @@ namespace LeGrandRestaurant
         public bool IsFiliale { get; private set; }
 
 
+
         public Restaurant(bool isFiliale, MaitreHotel maitreHotel)
         {
             this.IsFiliale = isFiliale;
@@ -79,7 +80,7 @@ namespace LeGrandRestaurant
         public double getCA()
         {
             double ca = 0;
-            commandes.ForEach(x => ca += x.GetCA());
+            commandes.ForEach(x => ca += x.GetTotal());
             return ca;
         }
 
@@ -97,5 +98,30 @@ namespace LeGrandRestaurant
             }
         }
 
+        public List<Commande> getNotServedCommands()
+        {
+            List<Commande> commandes = new List<Commande>();
+            serveurs.ForEach(serveur =>
+            {
+                serveur.commandes.ForEach(commande =>
+                {
+                    if (!commande.IsServed)
+                    {
+                        commandes.Add(commande);
+                    }
+                });
+            });
+            return commandes;
+        }
+
+        public List<Plat> cuisineTasks()
+        {
+            List<Plat> plats = new List<Plat>();
+            getNotServedCommands().ForEach(commande =>
+            {
+                commande.Plats.ForEach(plat => plats.Add(plat));
+            });
+            return plats;
+        }
     }
 }

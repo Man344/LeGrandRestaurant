@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeGrandRestaurant", "Librai
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeGrandRestarant.etats", "LeGrandRestarant.etats\LeGrandRestarant.etats.csproj", "{21D89964-D06F-44A3-A99E-5C67259B56CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeGrandRestaurant.tests", "LeGrandRestaurant.tests\LeGrandRestaurant.tests.csproj", "{CFDDA279-7D53-4A8A-943F-96CE091882CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeGrandRestaurant.tests", "LeGrandRestaurant.tests\LeGrandRestaurant.tests.csproj", "{CFDDA279-7D53-4A8A-943F-96CE091882CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

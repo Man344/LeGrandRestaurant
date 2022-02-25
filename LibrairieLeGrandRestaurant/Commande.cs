@@ -14,6 +14,7 @@ namespace LeGrandRestaurant
         public Serveur Serveur { get; private set; }
         public Table Table { get; private set; }
         public DateTime Creation { get; set; } = DateTime.Now;
+        public bool IsServed { get; private set; }
         public bool IsEpingle { get; private set; }
         public bool IsSentToThePolice { get; set; }
 
@@ -28,11 +29,9 @@ namespace LeGrandRestaurant
             this.Client = client;
             this.Table = table;
             this.Serveur = serveur;
-
-            this.Serveur.ca += GetCA();
         }
 
-        public double GetCA()
+        public double GetTotal()
         {
             double ca = 0;
             foreach(Boisson boisson in Boissons)
@@ -63,18 +62,6 @@ namespace LeGrandRestaurant
                 return true;
             }
             return false;
-        }
-
-        public void addPlat(Plat plat)
-        {
-            Plats.Add(plat);
-            Serveur.ca += plat.prix;
-        }
-
-        public void addBoisson(Boisson boisson)
-        {
-            Boissons.Add(boisson);
-            Serveur.ca += boisson.prix;
         }
 
     }
