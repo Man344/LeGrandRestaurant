@@ -9,7 +9,7 @@ namespace LeGrandRestaurant
 {
     public class Franchise
     {
-        public List<Restaurant> Filliales { get; private set; } = new List<Restaurant>();
+        public List<Restaurant> Filliales { get; set; } = new List<Restaurant>();
 
         public Menu menu { get; private set; }
         public void updateMenu(Menu menu)

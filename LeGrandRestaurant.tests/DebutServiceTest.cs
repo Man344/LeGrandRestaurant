@@ -46,7 +46,7 @@ namespace LeGrandRestaurant.tests
                 .WithTable(TableBuilder.BuildEnMemoire("1"))
                 .Build();
             //ALORS la table éditée est affectée au serveur et les deux autres au maître d'hôtel
-            Assert.Equal(commande.GetCA(), jean.ca);
+            Assert.Equal(commande.GetTotal(), jean.getCA());
         }
 
 
@@ -96,7 +96,7 @@ namespace LeGrandRestaurant.tests
             restaurant.tables.Add(TableBuilder.BuildEnMemoire("2"));
             Table table = TableBuilder.BuildEnMemoire("3");
             Serveur serveur = new Serveur("John", new DateTime(1922 / 2 / 22));
-            serveur.tonightTables.Add(table);
+            serveur.TonightTables.Add(table);
 
             restaurant.tables.Add(table);
             restaurant.serveurs.Add(serveur);
@@ -108,7 +108,7 @@ namespace LeGrandRestaurant.tests
             restaurant.TerminerService();
 
             //ET qu'une table est affectée à un serveur
-            if (serveur.tonightTables.Contains(table))
+            if (serveur.TonightTables.Contains(table))
             {
                 // ALORS la table éditée est affectée au serveur et les deux autres au maître d'hôtel
                 List<Table> tables = restaurant.tables;
