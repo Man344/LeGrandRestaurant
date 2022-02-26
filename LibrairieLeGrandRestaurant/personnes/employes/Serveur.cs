@@ -7,21 +7,25 @@ namespace LeGrandRestaurant.personnes.employes
 {
     public class Serveur : Employe
     {
-        public double ca { get; set; } = 0;
-        public List<Table> tonightTables { get; set; }
+        public List<Commande> commandes { get; set; }
+        public List<Table> TonightTables { get; set; }
+
         public Serveur(string nom, DateTime embauche) : base(nom, embauche)
         {
-            tonightTables = new List<Table>();
+            TonightTables = new List<Table>();
+            commandes = new List<Commande>();
         }
 
-        public void prendUneCommande(float montantCommande)
+        public void prendUneCommande(Commande commande)
         {
-            this.ca += montantCommande;
+            commandes.Add(commande);
         }
 
-        public void InitCA()
+        public double getCA()
         {
-            this.ca = 0;
+            double ca = 0;
+            commandes.ForEach(x => ca += x.GetTotal());
+            return ca;
         }
 
         public void affecter(Table table)
@@ -33,14 +37,14 @@ namespace LeGrandRestaurant.personnes.employes
             {
                 throw new Exception();
             }
-            tonightTables.Add(table);
+            TonightTables.Add(table);
         }
 
         public void desaffecter(Table table)
         {
-            if (tonightTables.Contains(table))
+            if (TonightTables.Contains(table))
             {
-                tonightTables.Remove(table);
+                TonightTables.Remove(table);
             }
             else
             {

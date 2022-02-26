@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -19,8 +20,8 @@ namespace LeGrandRestaurant.etats.table
         {
             this.nom = nom;
 
-            string jsonString = JsonConvert.SerializeObject(new { estLibre = true, estAssociee = false, nom = this.nom });
-            File.WriteAllText(PATH + nom + ".json", jsonString);
+            setPath();
+            doesThisTableAlreadyExists();
         }
 
 
@@ -82,6 +83,31 @@ namespace LeGrandRestaurant.etats.table
             JToken value;
             a.TryGetValue(key, out value);
             return (String)value;
+        }
+
+        private void doesThisTableAlreadyExists()
+        {
+            //todo
+            bool exists = false;
+
+            if (!exists)
+            {
+                string jsonString = JsonConvert.SerializeObject(new { estLibre = true, estAssociee = false, nom = this.nom });
+                File.WriteAllText(PATH + nom + ".json", jsonString);
+            }
+        }
+
+        private void setPath()
+        {
+            String pathChelou = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase);
+            String netPath = pathChelou.Substring(6);
+            String debugPath = Path.GetDirectoryName(netPath);
+            String binPath = Path.GetDirectoryName(debugPath);
+            String testPath = Path.GetDirectoryName(binPath);
+            String solutionPath = Path.GetDirectoryName(testPath);
+
+            String etatPath = solutionPath + @"\LeGrandRestarant.etats";
+            PATH = etatPath + @"\table\JSONs\";
         }
 
     }
