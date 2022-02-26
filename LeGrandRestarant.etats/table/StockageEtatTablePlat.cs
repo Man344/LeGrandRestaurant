@@ -13,7 +13,7 @@ namespace LeGrandRestaurant.etats.table
     public class StockageEtatTablePlat : IEtatTable
     {
         private String nom = "";
-        private String PATH = "D:\\projets\\LeGrandRestaurant\\LeGrandRestarant.etats\\table\\JSONs\\";
+        private String PATH = "C:\\Users\\allen\\Documents\\GitHub\\LeGrandRestaurant\\";
 
         public StockageEtatTablePlat(String nom)
         {
